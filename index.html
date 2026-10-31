@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCU Tracker — Master Blueprint (v6.0)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: #0a0e17;
+    color: #e0e7f5;
+    line-height: 1.7;
+    padding: 20px;
+    font-size: 15px;
+  }
+
+  .container {
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 30px 24px;
+    background: #111827;
+    border: 1px solid #1e3a5f;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  h1 { font-size: 28px; color: #00e5ff; margin-bottom: 8px; letter-spacing: 1px; }
+  h2 { font-size: 22px; color: #22d3ee; margin-top: 32px; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid #1e3a5f; }
+  h3 { font-size: 17px; color: #a855f7; margin-top: 22px; margin-bottom: 10px; }
+  h4 { font-size: 15px; color: #ffd54a; margin-top: 16px; margin-bottom: 8px; }
+
+  p { margin-bottom: 12px; color: #cbd5e1; }
+  ul, ol { margin: 10px 0 14px 24px; color: #cbd5e1; }
+  li { margin-bottom: 6px; }
+
+  code {
+    background: #0a0e17;
+    color: #22d3ee;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+  }
+
+  pre {
+    background: #0a0e17;
+    color: #a5f3fc;
+    padding: 14px;
+    border-radius: 10px;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    line-height: 1.6;
+    border: 1px solid #1e3a5f;
+    margin: 12px 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .header { text-align: center; padding: 20px 0; border-bottom: 2px solid #1e3a5f; margin-bottom: 20px; }
+  .subtitle { color: #94a3b8; font-size: 13px; margin-top: 4px; }
+
+  .toc {
+    background: #0a0e17; border: 1px solid #1e3a5f;
+    border-radius: 12px; padding: 18px 22px; margin: 20px 0;
+  }
+  .toc h3 { margin-top: 0; color: #00e5ff; }
+  .toc a { color: #22d3ee; text-decoration: none; }
+  .toc a:hover { color: #a855f7; text-decoration: underline; }
+
+  .badge {
+    display: inline-block; padding: 3px 10px; border-radius: 999px;
+    font-size: 11px; font-weight: 800; letter-spacing: 0.5px;
+    text-transform: uppercase; margin-left: 6px;
+  }
+  .badge-ok { background: #10b981; color: #000; }
+  .badge-warn { background: #f59e0b; color: #000; }
+  .badge-error { background: #ef4444; color: #fff; }
+  .badge-info { background: #3b82f6; color: #fff; }
+
+  table {
+    width: 100%; border-collapse: collapse; margin: 14px 0;
+    font-size: 14px; display: block; overflow-x: auto;
+  }
+  table thead { background: #0a0e17; }
+  table th {
+    text-align: left; padding: 10px 12px; color: #22d3ee;
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;
+    border-bottom: 2px solid #1e3a5f; white-space: nowrap;
+  }
+  table td {
+    padding: 10px 12px; border-bottom: 1px solid #1e3a5f;
+    color: #cbd5e1; vertical-align: top;
+  }
+  table tr:last-child td { border-bottom: none; }
+
+  .alert { padding: 14px 18px; border-radius: 10px; margin: 14px 0; border-left: 4px solid; font-size: 14px; }
+  .alert-danger { background: rgba(239, 68, 68, 0.1); border-color: #ef4444; color: #fecaca; }
+  .alert-warn { background: rgba(245, 158, 11, 0.1); border-color: #f59e0b; color: #fde68a; }
+  .alert-ok { background: rgba(16, 185, 129, 0.1); border-color: #10b981; color: #a7f3d0; }
+  .alert-info { background: rgba(59, 130, 246, 0.1); border-color: #3b82f6; color: #bfdbfe; }
+
+  .section { margin-bottom: 32px; scroll-margin-top: 20px; }
+  .divider { height: 1px; background: linear-gradient(90deg, transparent, #1e3a5f, transparent); margin: 30px 0; }
+
+  .kv {
+    display: grid; grid-template-columns: 180px 1fr; gap: 8px 16px;
+    margin: 10px 0; padding: 12px 16px; background: #0a0e17;
+    border-radius: 10px; border: 1px solid #1e3a5f;
+  }
+  .kv strong { color: #94a3b8; font-size: 13px; }
+  .kv span { color: #e0e7f5; font-size: 14px; word-break: break-all; }
+
+  .footer { text-align: center; padding: 30px 10px 10px; border-top: 1px solid #1e3a5f; margin-top: 30px; color: #64748b; font-size: 13px; }
+
+  @media (max-width: 600px) {
+    body { padding: 10px; font-size: 14px; }
+    .container { padding: 18px 14px; }
+    h1 { font-size: 22px; }
+    h2 { font-size: 18px; }
+    h3 { font-size: 15px; }
+    pre { font-size: 11px; padding: 10px; }
+    .kv { grid-template-columns: 1fr; gap: 4px; }
+    .kv strong { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <h1>⚡ MCU TRACKER — MASTER BLUEPRINT</h1>
+    <p class="subtitle">Version 6.0 · Last Updated: Oct 2026 · Guest Mode, Feedback & Secure Backend</p>
+  </div>
+
+  <div class="toc">
+    <h3>📑 Table of Contents</h3>
+    <ol>
+      <li><a href="#overview">Project Overview</a></li>
+      <li><a href="#architecture">Architecture & File Structure</a></li>
+      <li><a href="#features">Completed Features</a></li>
+      <li><a href="#backend">Backend & Security</a></li>
+      <li><a href="#bugs">Fixed Bugs & Solutions</a></li>
+      <li><a href="#pending">Pending / Known Issues</a></li>
+      <li><a href="#setup">Setup & Config Guide</a></li>
+      <li><a href="#notes">Notes for Next Assistant</a></li>
+    </ol>
+  </div>
+
+  <div class="section" id="overview">
+    <h2>1. 📌 Project Overview</h2>
+    <div class="kv">
+      <strong>Owner</strong><span>Shashwat Kumar (GitHub: shashwat0213)</span>
+      <strong>Live URL</strong><span>https://shashwat0213.github.io/</span>
+      <strong>Type</strong><span>Marvel Cinematic Universe Watch Tracker (PWA)</span>
+      <strong>Tech Stack</strong><span>HTML5, CSS3, Vanilla JS (ES Modules), Firebase v10, Node.js (Render)</span>
+      <strong>Hosting</strong><span>Frontend: GitHub Pages | Backend: Render</span>
+    </div>
+  </div>
+
+  <div class="section" id="architecture">
+    <h2>2. 📁 Architecture & File Structure</h2>
+    <pre>
+shashwat0213.github.io/
+├── index.html              (Main UI + PWA + Login Screen)
+├── manifest.json           (PWA Config)
+├── sw.js                   (Service Worker - Caching)
+├── icon-192.png            (PWA Icon)
+├── icon-512.png            (PWA Icon)
+│
+├── css/
+│   ├── style.css           (Base layout)
+│   ├── themes.css          (7 Premium Themes + Light Mode)
+│   └── animations.css      (Keyframes & Doomsday)
+│
+├── js/
+│   ├── firebase.js         (Firebase Init + Helpers)
+│   ├── theme.js            (Theme Switcher + Timer + Sound)
+│   ├── auth.js             (Email/Google Auth)
+│   ├── movies.js           (Firestore Data + Filters)
+│   ├── tracker.js          (Watched/Favorites/Dropped Sync)
+│   └── admin.js            (Admin Panel + TMDB via Render)
+│
+└── backend/                (Node.js Server)
+    ├── package.json
+    └── server.js           (Express - Hides TMDB Key)</pre>
+  </div>
+
+  <div class="section" id="features">
+    <h2>3. ✅ Completed Features</h2>
+    <table>
+      <thead>
+        <tr><th>Feature</th><th>Status</th><th>Details</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Full Screen Login Page</td>
+          <td><span class="badge badge-ok">Done</span></td>
+          <td>Loading ke baad naya page. Email/Password, Google, aur Guest ka option.</td>
+        </tr>
+        <tr>
+          <td>Guest Mode</td>
+          <td><span class="badge badge-ok">Done</span></td>
+          <td>Bina login ke use kar sakte hain. Data LocalStorage me save hota hai.</td>
+        </tr>
+        <tr>
+          <td>7 Premium Themes</td>
+          <td><span class="badge badge-ok">Done</span></td>
+          <td>Stark, Asgard, Hulk, Wakanda, Sanctum, Doomsday, Spider-Verse.</td>
+        </tr>
+        <tr>
+          <td>Dropped Movies</td>
+          <td><span class="badge badge-ok">Done</span></td>
+          <td>Movie ko drop karne ka option aur filter.</td>
+        </tr>
+        <tr>
+          <td>Feedback System</td>
+          <td><span class="badge badge-ok">Done</span></td>
+          <td>Admin panel me save + Email pe bhejta hai (Web3Forms).</td>
+        </tr>
+        <tr>
+          <td>Render Backend</td>
+          <td><span class="badge badge-ok">Done</span></td>
+          <td>TMDB API key hide karne ke liye.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section" id="backend">
+    <h2>4. 🔒 Backend & Security</h2>
+    <div class="kv">
+      <strong>Render URL</strong><span>https://marvel-mcu-tracker.onrender.com</span>
+      <strong>Env Variable</strong><span><code>TMDB_API_KEY</code> (Render dashboard)</span>
+      <strong>Frontend Link</strong><span><code>js/admin.js</code> mein <code>RENDER_BACKEND_URL</code></span>
+      <strong>Free Tier</strong><span>15 min inactivity ke baad sleep (30-50s wake time)</span>
+    </div>
+  </div>
+
+  <div class="section" id="bugs">
+    <h2>5. 🐛 Fixed Bugs & Solutions</h2>
+    <table>
+      <thead>
+        <tr><th>Bug</th><th>Solution</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Layout breaking on theme change</td>
+          <td><code>themes.css</code> me sirf variables rakhe, layout properties hata diye.</td>
+        </tr>
+        <tr>
+          <td>Light Mode breaking layout</td>
+          <td><code>body.light-mode span</code> wala tag hata diya.</td>
+        </tr>
+        <tr>
+          <td>Timer Save/Edit not working</td>
+          <td>Date format fix kiya aur ID logic theek kiya.</td>
+        </tr>
+        <tr>
+          <td>PWA Install not showing</td>
+          <td><code>sw.js</code> me proper <code>fetch</code> handler add kiya.</td>
+        </tr>
+        <tr>
+          <td>Explore Button not scrolling</td>
+          <td><code>scrollIntoView</code> add kiya.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section" id="pending">
+    <h2>6. ⚠️ Pending / Known Issues</h2>
+    <div class="alert alert-warn">
+      <h4>⚠️ Web3Forms Key</h4>
+      <p><code>index.html</code> me <code>YAHAN_APNI_ACCESS_KEY_DALO</code> ki jagah apni key daalni hai. Ye key Web3Forms ki site se free milti hai.</p>
+    </div>
+    <div class="alert alert-warn">
+      <h4>⚠️ Header Alignment</h4>
+      <p>User chahte hain ki header bilkul original jaisa ho (ek line me title, niche powered by, phir buttons ka box). Agar design bigda hai to check karna hai.</p>
+    </div>
+  </div>
+
+  <div class="section" id="setup">
+    <h2>7. 🛠️ Setup & Config Guide</h2>
+    <h3>Firebase</h3>
+    <ul>
+      <li>Project: <code>marvel-mcu-tracker</code></li>
+      <li>Auth: Email/Password + Google Enabled</li>
+      <li>Authorized Domains: <code>shashwat0213.github.io</code></li>
+      <li>Firestore Rules: Users can read/write their own data, Admin full access.</li>
+    </ul>
+    <h3>Render Backend</h3>
+    <pre>
+Root Directory: backend
+Build Command: npm install
+Start Command: node server.js
+Environment Variable: TMDB_API_KEY = [Your Key]</pre>
+    <h3>Web3Forms</h3>
+    <ul>
+      <li>Email: <code>mcutrackersupport@gmail.com</code></li>
+      <li>Access Key: (User has it, will paste in index.html)</li>
+    </ul>
+  </div>
+
+  <div class="section" id="notes">
+    <h2>8. 📝 Notes for Next Assistant</h2>
+    <h3>User Preferences</h3>
+    <ul>
+      <li>Hindi + English mix.</li>
+      <li>Mobile pe kaam karta hai (GitHub web editor).</li>
+      <li>Screenshot se problems clearly batata hai.</li>
+      <li><strong>Code ko parts me dena</strong> (kyunki bada code cut ho jata hai).</li>
+      <li>Direct replaceable code chahiye, adha-adhura nahi.</li>
+    </ul>
+    <h3>Technical Constraints</h3>
+    <ul>
+      <li>PWA, Firebase, Render sab set hai.</li>
+      <li>Sirf UI/UX aur features add karne hain.</li>
+      <li>Kuch bhi naya add karne se pehle existing features check karo.</li>
+    </ul>
+    <h3>Important Code Snippets</h3>
+    <p><strong>Login Logic (index.html):</strong></p>
+    <pre>if (!hasVisited) {
+  document.getElementById("loginScreen").style.display = "flex";
+}</pre>
+    <p><strong>Feedback Logic:</strong></p>
+    <pre>access_key: "YAHAN_APNI_ACCESS_KEY_DALO"</pre>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="footer">
+    <p><strong>MCU Tracker Master Blueprint v6.0</strong></p>
+    <p>Isko naye AI ko dikhao, sab samajh jayega.</p>
+    <p style="margin-top:10px;color:#22d3ee;">⚡ Powered by Shashwat</p>
+  </div>
+
+</div>
+
+</body>
+</html>
