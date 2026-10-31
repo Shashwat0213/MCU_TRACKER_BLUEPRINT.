@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MCU Tracker — Master Blueprint (v6.0)</title>
+<title>MCU Tracker — Master Blueprint (v7.0)</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -133,7 +133,7 @@
 
   <div class="header">
     <h1>⚡ MCU TRACKER — MASTER BLUEPRINT</h1>
-    <p class="subtitle">Version 6.0 · Last Updated: Oct 2026 · Guest Mode, Feedback & Secure Backend</p>
+    <p class="subtitle">Version 7.0 · Last Updated: Oct 2026 · Final Polish & Bug Fixes</p>
   </div>
 
   <div class="toc">
@@ -141,11 +141,11 @@
     <ol>
       <li><a href="#overview">Project Overview</a></li>
       <li><a href="#architecture">Architecture & File Structure</a></li>
-      <li><a href="#features">Completed Features</a></li>
-      <li><a href="#backend">Backend & Security</a></li>
-      <li><a href="#bugs">Fixed Bugs & Solutions</a></li>
-      <li><a href="#pending">Pending / Known Issues</a></li>
-      <li><a href="#setup">Setup & Config Guide</a></li>
+      <li><a href="#features">Completed Features (Kya Ho Gaya)</a></li>
+      <li><a href="#backend">Backend & API Security</a></li>
+      <li><a href="#bugs">Fixed Bugs</a></li>
+      <li><a href="#pending">Pending Issues (Kya Baaki Hai)</a></li>
+      <li><a href="#next-steps">Next Steps (Aage Kya Karna Hai)</a></li>
       <li><a href="#notes">Notes for Next Assistant</a></li>
     </ol>
   </div>
@@ -165,175 +165,215 @@
     <h2>2. 📁 Architecture & File Structure</h2>
     <pre>
 shashwat0213.github.io/
-├── index.html              (Main UI + PWA + Login Screen)
+├── index.html              (Main UI + Login Page + Admin)
 ├── manifest.json           (PWA Config)
 ├── sw.js                   (Service Worker - Caching)
-├── icon-192.png            (PWA Icon)
-├── icon-512.png            (PWA Icon)
+├── icon-192.png / 512.png  (PWA Icons)
 │
 ├── css/
-│   ├── style.css           (Base layout)
+│   ├── style.css           (Base layout & components)
 │   ├── themes.css          (7 Premium Themes + Light Mode)
-│   └── animations.css      (Keyframes & Doomsday)
+│   └── animations.css      (Keyframes, Doomsday, Drop animations)
 │
 ├── js/
 │   ├── firebase.js         (Firebase Init + Helpers)
-│   ├── theme.js            (Theme Switcher + Timer + Sound)
-│   ├── auth.js             (Email/Google Auth)
-│   ├── movies.js           (Firestore Data + Filters)
+│   ├── theme.js            (Theme Switcher + Doomsday Timer + Sound)
+│   ├── auth.js             (Email/Google Auth + Guest Logic)
+│   ├── movies.js           (Firestore Data + Filter + Drop Logic)
 │   ├── tracker.js          (Watched/Favorites/Dropped Sync)
 │   └── admin.js            (Admin Panel + TMDB via Render)
 │
 └── backend/                (Node.js Server)
     ├── package.json
-    └── server.js           (Express - Hides TMDB Key)</pre>
+    └── server.js           (Express - Hides TMDB API Key)</pre>
   </div>
 
   <div class="section" id="features">
-    <h2>3. ✅ Completed Features</h2>
+    <h2>3. ✅ Completed Features (Kya Ho Gaya)</h2>
     <table>
       <thead>
         <tr><th>Feature</th><th>Status</th><th>Details</th></tr>
       </thead>
       <tbody>
         <tr>
-          <td>Full Screen Login Page</td>
+          <td>Fast Loading Screen (1.5s)</td>
           <td><span class="badge badge-ok">Done</span></td>
-          <td>Loading ke baad naya page. Email/Password, Google, aur Guest ka option.</td>
+          <td>Animations optimized. Slow feel nahi hota.</td>
         </tr>
         <tr>
-          <td>Guest Mode</td>
+          <td>Professional Full-Screen Login Page</td>
           <td><span class="badge badge-ok">Done</span></td>
-          <td>Bina login ke use kar sakte hain. Data LocalStorage me save hota hai.</td>
+          <td>Email/Password, Google OAuth, Guest Mode. Pehli baar aane par milta hai.</td>
         </tr>
         <tr>
           <td>7 Premium Themes</td>
           <td><span class="badge badge-ok">Done</span></td>
-          <td>Stark, Asgard, Hulk, Wakanda, Sanctum, Doomsday, Spider-Verse.</td>
+          <td>Stark Tech, Asgard, Hulk, Wakanda, Sanctum, Doomsday, Spider-Verse.</td>
         </tr>
         <tr>
-          <td>Dropped Movies</td>
+          <td>Guest Mode (Local Storage)</td>
           <td><span class="badge badge-ok">Done</span></td>
-          <td>Movie ko drop karne ka option aur filter.</td>
+          <td>Bina login ke use kar sakte hain. Data browser mein save hota hai.</td>
         </tr>
         <tr>
-          <td>Feedback System</td>
+          <td>Dropped Movies Feature</td>
           <td><span class="badge badge-ok">Done</span></td>
-          <td>Admin panel me save + Email pe bhejta hai (Web3Forms).</td>
+          <td>Movie ko drop karne ka option + Filter tab.</td>
         </tr>
         <tr>
-          <td>Render Backend</td>
+          <td>Feedback System (DB + Email)</td>
           <td><span class="badge badge-ok">Done</span></td>
-          <td>TMDB API key hide karne ke liye.</td>
+          <td>Admin Panel mein save + Web3Forms se email (<code>mcutrackersupport@gmail.com</code>).</td>
+        </tr>
+        <tr>
+          <td>Secure TMDB API (Render)</td>
+          <td><span class="badge badge-ok">Done</span></td>
+          <td>API key frontend se hatakar Render backend par shift ki gayi.</td>
+        </tr>
+        <tr>
+          <td>Admin Panel (Full Control)</td>
+          <td><span class="badge badge-ok">Done</span></td>
+          <td>Movies Add/Edit, Users Manage, Timers, Feedback view.</td>
+        </tr>
+        <tr>
+          <td>Light/Dark Mode</td>
+          <td><span class="badge badge-ok">Done</span></td>
+          <td>Layout-safe CSS variables ke saath.</td>
         </tr>
       </tbody>
     </table>
   </div>
 
   <div class="section" id="backend">
-    <h2>4. 🔒 Backend & Security</h2>
+    <h2>4. 🔒 Backend & API Security</h2>
     <div class="kv">
       <strong>Render URL</strong><span>https://marvel-mcu-tracker.onrender.com</span>
-      <strong>Env Variable</strong><span><code>TMDB_API_KEY</code> (Render dashboard)</span>
+      <strong>Env Variable</strong><span><code>TMDB_API_KEY</code> (Set in Render Dashboard)</span>
       <strong>Frontend Link</strong><span><code>js/admin.js</code> mein <code>RENDER_BACKEND_URL</code></span>
-      <strong>Free Tier</strong><span>15 min inactivity ke baad sleep (30-50s wake time)</span>
+      <strong>Web3Forms Key</strong><span><code>bc7dccc9-63ce-48a7-8eab-1d05811d824f</code> (index.html mein set hai)</span>
     </div>
   </div>
 
   <div class="section" id="bugs">
-    <h2>5. 🐛 Fixed Bugs & Solutions</h2>
+    <h2>5. 🐛 Fixed Bugs</h2>
     <table>
       <thead>
         <tr><th>Bug</th><th>Solution</th></tr>
       </thead>
       <tbody>
         <tr>
-          <td>Layout breaking on theme change</td>
-          <td><code>themes.css</code> me sirf variables rakhe, layout properties hata diye.</td>
+          <td>Theme change pe layout toot raha tha</td>
+          <td><code>themes.css</code> se saari layout properties hata di, sirf variables rakhe.</td>
         </tr>
         <tr>
-          <td>Light Mode breaking layout</td>
-          <td><code>body.light-mode span</code> wala tag hata diya.</td>
+          <td>Light mode mein layout break ho raha tha</td>
+          <td><code>body.light-mode span</code> wala bug hata diya.</td>
         </tr>
         <tr>
-          <td>Timer Save/Edit not working</td>
-          <td>Date format fix kiya aur ID logic theek kiya.</td>
+          <td>Timer save/edit nahi ho raha tha</td>
+          <td>Date format aur ID logic theek kiya.</td>
         </tr>
         <tr>
-          <td>PWA Install not showing</td>
-          <td><code>sw.js</code> me proper <code>fetch</code> handler add kiya.</td>
+          <td>PWA Install option nahi aa raha tha</td>
+          <td>Proper <code>fetch</code> handler aur <code>manifest.json</code> fix kiya.</td>
         </tr>
         <tr>
-          <td>Explore Button not scrolling</td>
+          <td>Explore Button kaam nahi kar raha tha</td>
           <td><code>scrollIntoView</code> add kiya.</td>
+        </tr>
+        <tr>
+          <td>Recommended Next stuck at Loading</td>
+          <td><code>tracker-updated</code> event listener fix kiya.</td>
+        </tr>
+        <tr>
+          <td>Google Logo Blue Dot</td>
+          <td>SVG Google logo use kiya.</td>
+        </tr>
+        <tr>
+          <td>Website slow feel ho rahi thi</td>
+          <td>Loading time 1.5s kiya, background data loading fix kiya.</td>
         </tr>
       </tbody>
     </table>
   </div>
 
   <div class="section" id="pending">
-    <h2>6. ⚠️ Pending / Known Issues</h2>
+    <h2>6. ⚠️ Pending Issues (Kya Baaki Hai)</h2>
     <div class="alert alert-warn">
-      <h4>⚠️ Web3Forms Key</h4>
-      <p><code>index.html</code> me <code>YAHAN_APNI_ACCESS_KEY_DALO</code> ki jagah apni key daalni hai. Ye key Web3Forms ki site se free milti hai.</p>
+      <h4>1. Header Layout Alignment (Minor)</h4>
+      <p>User chahte hain ki header bilkul original jaisa ho (title ek line mein, powered by uske niche, phir buttons ka box). Kabhi kabhi mobile pe wrap ho jata hai, jise fix karna hai.</p>
     </div>
     <div class="alert alert-warn">
-      <h4>⚠️ Header Alignment</h4>
-      <p>User chahte hain ki header bilkul original jaisa ho (ek line me title, niche powered by, phir buttons ka box). Agar design bigda hai to check karna hai.</p>
+      <h4>2. PWA Install Prompt Testing</h4>
+      <p>Abhi bhi 100% confirm nahi hai ki Chrome Android pe "Install App" ka button aa raha hai ya nahi. Debugging ki zaroorat ho sakti hai.</p>
+    </div>
+    <div class="alert alert-info">
+      <h4>3. Render Cold Start</h4>
+      <p>Render free tier 15 min inactivity ke baad sleep ho jata hai. UptimeRobot se ping karwa ke jagaye rakh sakte hain (Optional).</p>
     </div>
   </div>
 
-  <div class="section" id="setup">
-    <h2>7. 🛠️ Setup & Config Guide</h2>
-    <h3>Firebase</h3>
-    <ul>
-      <li>Project: <code>marvel-mcu-tracker</code></li>
-      <li>Auth: Email/Password + Google Enabled</li>
-      <li>Authorized Domains: <code>shashwat0213.github.io</code></li>
-      <li>Firestore Rules: Users can read/write their own data, Admin full access.</li>
-    </ul>
-    <h3>Render Backend</h3>
-    <pre>
-Root Directory: backend
-Build Command: npm install
-Start Command: node server.js
-Environment Variable: TMDB_API_KEY = [Your Key]</pre>
-    <h3>Web3Forms</h3>
-    <ul>
-      <li>Email: <code>mcutrackersupport@gmail.com</code></li>
-      <li>Access Key: (User has it, will paste in index.html)</li>
-    </ul>
+  <div class="section" id="next-steps">
+    <h2>7. 🎯 Next Steps (Aage Kya Karna Hai)</h2>
+    <ol>
+      <li><strong>Header Alignment Fix:</strong> Mobile pe logo aur buttons ka alignment perfect karna (flexbox/grid use karke).</li>
+      <li><strong>PWA Install Force:</strong> Agar browser prompt nahi dikha raha, toh "Install App" button ko manually trigger karna.</li>
+      <li><strong>Custom Domain:</strong> Agar user chahe toh GitHub Pages pe custom domain attach karna.</li>
+      <li><strong>Extra Features:</strong> Watchlist sharing, custom user profiles, ya reviews section add kar sakte hain.</li>
+      <li><strong>Analytics:</strong> Google Analytics ya Firebase Analytics add karke track karna ki kitne log visit kar rahe hain.</li>
+    </ol>
   </div>
 
   <div class="section" id="notes">
     <h2>8. 📝 Notes for Next Assistant</h2>
+    
     <h3>User Preferences</h3>
     <ul>
-      <li>Hindi + English mix.</li>
+      <li>Hindi + English mix mein baat karta hai.</li>
       <li>Mobile pe kaam karta hai (GitHub web editor).</li>
-      <li>Screenshot se problems clearly batata hai.</li>
-      <li><strong>Code ko parts me dena</strong> (kyunki bada code cut ho jata hai).</li>
+      <li>Screenshot bhej kar problems batata hai.</li>
+      <li><strong>Code ko parts mein dena</strong> (kyunki lamba code cut ho jata hai).</li>
       <li>Direct replaceable code chahiye, adha-adhura nahi.</li>
+      <li>Koi feature cut nahi karna, jo hai wo waise hi rakhna.</li>
     </ul>
+
     <h3>Technical Constraints</h3>
     <ul>
       <li>PWA, Firebase, Render sab set hai.</li>
       <li>Sirf UI/UX aur features add karne hain.</li>
       <li>Kuch bhi naya add karne se pehle existing features check karo.</li>
+      <li>API Keys aur credentials kabhi public mat karna (README mein nahi).</li>
     </ul>
+
     <h3>Important Code Snippets</h3>
-    <p><strong>Login Logic (index.html):</strong></p>
-    <pre>if (!hasVisited) {
+    <p><strong>Login Redirect Logic (index.html):</strong></p>
+    <pre>const hasVisited = localStorage.getItem('mcuVisited');
+if (!hasVisited) {
   document.getElementById("loginScreen").style.display = "flex";
 }</pre>
+
     <p><strong>Feedback Logic:</strong></p>
-    <pre>access_key: "YAHAN_APNI_ACCESS_KEY_DALO"</pre>
+    <pre>access_key: "bc7dccc9-63ce-48a7-8eab-1d05811d824f"</pre>
+
+    <p><strong>Render Backend URL (admin.js):</strong></p>
+    <pre>const RENDER_BACKEND_URL = "https://marvel-mcu-tracker.onrender.com";</pre>
+
+    <h3>Setup Checklist (For New Assistant)</h3>
+    <ul>
+      <li>☐ Firebase project ready: <code>marvel-mcu-tracker</code></li>
+      <li>☐ Firestore rules deployed</li>
+      <li>☐ Auth: Email/Password + Google enabled</li>
+      <li>☐ Render backend live: <code>marvel-mcu-tracker.onrender.com</code></li>
+      <li>☐ Web3Forms key set in <code>index.html</code></li>
+      <li>☐ Icons <code>icon-192.png</code> & <code>icon-512.png</code> uploaded</li>
+      <li>☐ Cache cleared on mobile for PWA</li>
+    </ul>
   </div>
 
   <div class="divider"></div>
 
   <div class="footer">
-    <p><strong>MCU Tracker Master Blueprint v6.0</strong></p>
+    <p><strong>MCU Tracker Master Blueprint v7.0</strong></p>
     <p>Isko naye AI ko dikhao, sab samajh jayega.</p>
     <p style="margin-top:10px;color:#22d3ee;">⚡ Powered by Shashwat</p>
   </div>
