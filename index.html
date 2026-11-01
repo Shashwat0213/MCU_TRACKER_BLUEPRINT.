@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MCU Tracker — Master Blueprint (v9.0)</title>
+<title>MCU Tracker — Master Blueprint (v10.0)</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -112,6 +112,12 @@
   }
   .kv strong { color: #94a3b8; font-size: 13px; }
   .kv span { color: #e0e7f5; font-size: 14px; word-break: break-all; }
+  
+  .live-link {
+    color: #10b981 !important;
+    font-weight: 800;
+    text-decoration: underline;
+  }
 
   .footer { text-align: center; padding: 30px 10px 10px; border-top: 1px solid #1e3a5f; margin-top: 30px; color: #64748b; font-size: 13px; }
 
@@ -133,7 +139,7 @@
 
   <div class="header">
     <h1>⚡ MCU TRACKER — MASTER BLUEPRINT</h1>
-    <p class="subtitle">Version 9.0 · Last Updated: Nov 2026 · Full Roadmap, Future Plans & AI Instructions</p>
+    <p class="subtitle">Version 10.0 · Last Updated: Nov 2026 · PWA Live, Icons Installed & Fully Working</p>
   </div>
 
   <div class="toc">
@@ -144,8 +150,8 @@
       <li><a href="#features">Completed Features (Kya Ho Gaya)</a></li>
       <li><a href="#backend">Backend & API Security</a></li>
       <li><a href="#bugs">Fixed Bugs</a></li>
-      <li><a href="#pending">Pending Issues (Turant Karna Hai)</a></li>
-      <li><a href="#next-steps">Future Plans (Aage Kya Karna Hai)</a></li>
+      <li><a href="#pending">Pending Issues</a></li>
+      <li><a href="#next-steps">Future Plans</a></li>
       <li><a href="#notes">Notes for Next Assistant</a></li>
     </ol>
   </div>
@@ -154,7 +160,7 @@
     <h2>1. 📌 Project Overview</h2>
     <div class="kv">
       <strong>Owner</strong><span>Shashwat Kumar (GitHub: shashwat0213)</span>
-      <strong>Live URL</strong><span>https://shashwat0213.github.io/</span>
+      <strong>Live URL</strong><span><a href="https://shashwat0213.github.io/MARVEL-MCU-TRACKER/" target="_blank" class="live-link">https://shashwat0213.github.io/MARVEL-MCU-TRACKER/</a></span>
       <strong>Type</strong><span>Marvel Cinematic Universe Watch Tracker (PWA)</span>
       <strong>Tech Stack</strong><span>HTML5, CSS3, Vanilla JS (ES Modules), Firebase v10, Node.js (Render)</span>
       <strong>Hosting</strong><span>Frontend: GitHub Pages | Backend: Render</span>
@@ -164,28 +170,29 @@
   <div class="section" id="architecture">
     <h2>2. 📁 Architecture & File Structure</h2>
     <pre>
-shashwat0213.github.io/
-├── index.html              (Main UI + Professional Login)
-├── manifest.json           (PWA Config)
-├── sw.js                   (Service Worker - Fast Cache)
-├── icon-192.png / 512.png  (PWA Icons)
+MARVEL-MCU-TRACKER/
+├── index.html                  (Main UI + Professional Login)
+├── manifest.json               (PWA Config)
+├── sw.js                       (Service Worker - Fast Cache)
+├── mcu_tracker_icon_192x192.png (PWA Icon - Small)
+├── mcu_tracker_icon_512x512.png (PWA Icon - Large)
 │
 ├── css/
-│   ├── style.css           (Base layout & components)
-│   ├── themes.css          (7 Premium Themes)
-│   └── animations.css      (Keyframes, Doomsday, Drop)
+│   ├── style.css               (Base layout & components)
+│   ├── themes.css              (7 Premium Themes)
+│   └── animations.css          (Keyframes, Doomsday, Drop)
 │
 ├── js/
-│   ├── firebase.js         (Firebase Init + Helpers)
-│   ├── theme.js            (Theme Switcher + Doomsday + Sound)
-│   ├── auth.js             (Email/Google Auth + Guest Logic)
-│   ├── movies.js           (Firestore Data + Filter + Drop Logic)
-│   ├── tracker.js          (Watched/Favorites/Dropped Sync)
-│   └── admin.js            (Admin Panel + TMDB via Render)
+│   ├── firebase.js             (Firebase Init + Helpers)
+│   ├── theme.js                (Theme Switcher + Doomsday + Sound)
+│   ├── auth.js                 (Email/Google Auth + Guest Logic)
+│   ├── movies.js               (Firestore Data + Filter + Drop Logic)
+│   ├── tracker.js              (Watched/Favorites/Dropped Sync)
+│   └── admin.js                (Admin Panel + TMDB via Render)
 │
-└── backend/                (Node.js Server)
+└── backend/                    (Node.js Server on Render)
     ├── package.json
-    └── server.js           (Express - Hides TMDB API Key)</pre>
+    └── server.js               (Express - Hides TMDB API Key)</pre>
   </div>
 
   <div class="section" id="features">
@@ -195,16 +202,17 @@ shashwat0213.github.io/
         <tr><th>Feature</th><th>Status</th><th>Details</th></tr>
       </thead>
       <tbody>
+        <tr><td>PWA Install (Home Screen)</td><td><span class="badge badge-ok">Live</span></td><td>Custom icons installed. App installs perfectly with custom Marvel logo.</td></tr>
         <tr><td>Fast Loading Screen</td><td><span class="badge badge-ok">Done</span></td><td>CSS rings animation, 1.5 second duration.</td></tr>
         <tr><td>Professional Sign In Page</td><td><span class="badge badge-ok">Done</span></td><td>Full screen page, Email, Google, Guest.</td></tr>
-        <tr><td>Responsive Glowing Header</td><td><span class="badge badge-ok">Done</span></td><td>Mobile pe fit hota hai, glowing effect.</td></tr>
+        <tr><td>Logout Redirect</td><td><span class="badge badge-ok">Done</span></td><td>Logout dabate hi sign-in page wapas aa jata hai.</td></tr>
+        <tr><td>Responsive Glowing Header</td><td><span class="badge badge-ok">Done</span></td><td>Mobile pe fit hota hai, glowing effect ke saath.</td></tr>
         <tr><td>7 Premium Themes</td><td><span class="badge badge-ok">Done</span></td><td>Stark, Asgard, Hulk, Wakanda, Sanctum, Doomsday, Spider-Verse.</td></tr>
         <tr><td>Guest Mode</td><td><span class="badge badge-ok">Done</span></td><td>Local Storage sync, bina login.</td></tr>
         <tr><td>Dropped Movies</td><td><span class="badge badge-ok">Done</span></td><td>Drop karne ka option + Filter.</td></tr>
         <tr><td>Feedback System</td><td><span class="badge badge-ok">Done</span></td><td>Admin Panel + Email (Web3Forms key).</td></tr>
         <tr><td>Secure API</td><td><span class="badge badge-ok">Done</span></td><td>TMDB key Render backend pe hidden.</td></tr>
         <tr><td>Admin Panel</td><td><span class="badge badge-ok">Done</span></td><td>Movies, Timers, Users, Feedback.</td></tr>
-        <tr><td>Light/Dark Mode</td><td><span class="badge badge-ok">Done</span></td><td>Layout-safe CSS variables.</td></tr>
       </tbody>
     </table>
   </div>
@@ -226,61 +234,51 @@ shashwat0213.github.io/
         <tr><th>Bug</th><th>Solution</th></tr>
       </thead>
       <tbody>
-        <tr><td>Theme change pe layout toot raha tha</td><td><code>themes.css</code> se layout properties hata di.</td></tr>
-        <tr><td>Light mode mein layout break</td><td><code>body.light-mode span</code> bug hata diya.</td></tr>
-        <tr><td>Timer save/edit not working</td><td>Date format aur ID logic fix.</td></tr>
-        <tr><td>PWA Install not showing</td><td>Proper fetch handler add kiya.</td></tr>
+        <tr><td>Theme layout break</td><td><code>themes.css</code> se layout properties hata di.</td></tr>
+        <tr><td>Light mode break</td><td><code>body.light-mode span</code> bug hata diya.</td></tr>
+        <tr><td>Timer save/edit issue</td><td>Date format aur ID logic fix.</td></tr>
+        <tr><td>PWA Install not showing</td><td>Icons upload kiye, <code>manifest.json</code> fix kiya.</td></tr>
         <tr><td>Explore Button not scrolling</td><td><code>scrollIntoView</code> add kiya.</td></tr>
-        <tr><td>Recommended Next stuck at Loading</td><td><code>tracker-updated</code> event fix.</td></tr>
+        <tr><td>Recommended Next stuck</td><td><code>tracker-updated</code> event fix.</td></tr>
         <tr><td>Google Logo Blue Dot</td><td>SVG use kiya.</td></tr>
         <tr><td>Website slow feel</td><td>Loading 1.5s kiya, background data loading fix.</td></tr>
         <tr><td>Header mobile pe toot raha tha</td><td><code>clamp()</code> aur responsive CSS.</td></tr>
         <tr><td>Login Page nahi aa raha tha</td><td><code>hasVisited</code> logic aur full-screen overlay fix.</td></tr>
+        <tr><td>Logout pe page reload nahi hota tha</td><td><code>user-logged-out</code> event se login screen trigger kiya.</td></tr>
       </tbody>
     </table>
   </div>
 
   <div class="section" id="pending">
-    <h2>6. ⚠️ Pending Issues (Turant Karna Hai)</h2>
-    <div class="alert alert-danger">
-      <h4>1. PWA Icons Upload Nahi Hue</h4>
-      <p><code>icon-192.png</code> aur <code>icon-512.png</code> GitHub ke main folder mein upload karne zaroori hain. Inke bina PWA install nahi hoga. Google se Marvel logo download karke upload karo.</p>
-    </div>
-    <div class="alert alert-warn">
-      <h4>2. PWA Install Testing</h4>
-      <p>Chrome Android pe <b>"Install App"</b> ka option aata hai ya nahi confirm karna hai. Agar nahi, toh <code>sw.js</code> aur <code>manifest.json</code> debug karna hoga.</p>
+    <h2>6. ⚠️ Pending Issues (Agar Koi Hai)</h2>
+    <div class="alert alert-info">
+      <h4>1. Render Cold Start</h4>
+      <p>Render free tier 15 min inactivity ke baad sleep hota hai. <b>UptimeRobot</b> se ping karwa ke jagaya ja sakta hai (Optional).</p>
     </div>
     <div class="alert alert-info">
-      <h4>3. Render Cold Start</h4>
-      <p>Render free tier 15 min inactivity ke baad sleep hota hai. <b>UptimeRobot</b> se ping karwa ke jagaya ja sakta hai (Optional).</p>
+      <h4>2. Custom Domain (Optional)</h4>
+      <p>Agar future mein domain lena ho, toh GitHub Pages se connect karna hoga.</p>
     </div>
   </div>
 
   <div class="section" id="next-steps">
     <h2>7. 🚀 Future Plans (Aage Kya Karna Hai)</h2>
     
-    <h3>Level 1: Chhoti Improvements (Priority 1)</h3>
-    <ul>
-      <li><b>Icons Upload:</b> <code>icon-192.png</code> aur <code>icon-512.png</code> upload karo (PWA install ke liye).</li>
-      <li><b>Header Mobile Polish:</b> Agar font mobile pe bada lage, <code>clamp(1rem, 5vw, 2rem)</code> kar do.</li>
-      <li><b>Login Page Background:</b> Agar default poster pasand na aaye, toh custom avengers image URL daalo.</li>
-    </ul>
-
-    <h3>Level 2: User Features (Priority 2)</h3>
+    <h3>Level 1: User Features (Priority 1)</h3>
     <ul>
       <li><b>User Reviews:</b> Movies ke andar rating aur review dene ka option (Firestore collection: <code>reviews</code>).</li>
       <li><b>Watchlist Sharing:</b> User apni list ka link generate kare (URL parameter se).</li>
       <li><b>Custom User Profiles:</b> Guest ke liye avatar change option.</li>
     </ul>
 
-    <h3>Level 3: Analytics & Growth (Priority 3)</h3>
+    <h3>Level 2: Analytics & Growth (Priority 2)</h3>
     <ul>
       <li><b>Google Analytics / Firebase Analytics:</b> Traffic track karna (kitne users, kitni movies dekhi).</li>
       <li><b>Push Notifications:</b> "New Movie Added" ya "Doomsday Date Changed" alerts.</li>
       <li><b>SEO Optimization:</b> Meta tags, sitemap.xml, robots.txt add karo.</li>
     </ul>
 
-    <h3>Level 4: Long-Term (Priority 4)</h3>
+    <h3>Level 3: Long-Term (Priority 3)</h3>
     <ul>
       <li><b>Custom Domain:</b> GitHub Pages pe domain connect (e.g., <code>mcutracker.com</code>).</li>
       <li><b>Render Upgrade:</b> Paid tier taaki 24/7 active rahe (no cold start).</li>
@@ -327,8 +325,7 @@ if (!hasVisited) {
       <li>☐ Auth: Email + Google enabled</li>
       <li>☐ Render backend: live</li>
       <li>☐ Web3Forms key set</li>
-      <li>☐ Icons <code>icon-192.png</code> & <code>icon-512.png</code></li>
-      <li>☐ Cache clear for PWA</li>
+      <li>☐ PWA Icons uploaded & working</li>
     </ul>
 
     <h3>Coding Rules (Strict)</h3>
@@ -343,7 +340,7 @@ if (!hasVisited) {
   <div class="divider"></div>
 
   <div class="footer">
-    <p><strong>MCU Tracker Master Blueprint v9.0</strong></p>
+    <p><strong>MCU Tracker Master Blueprint v10.0</strong></p>
     <p>Isko naye AI ko dikhao, sab samajh jayega.</p>
     <p style="margin-top:10px;color:#22d3ee;">⚡ Powered by Shashwat</p>
   </div>
