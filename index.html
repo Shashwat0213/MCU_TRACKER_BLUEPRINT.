@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MCU Tracker — Master Blueprint (v10.0)</title>
+<title>MCU Tracker — Master Blueprint (v11.0)</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -112,12 +112,6 @@
   }
   .kv strong { color: #94a3b8; font-size: 13px; }
   .kv span { color: #e0e7f5; font-size: 14px; word-break: break-all; }
-  
-  .live-link {
-    color: #10b981 !important;
-    font-weight: 800;
-    text-decoration: underline;
-  }
 
   .footer { text-align: center; padding: 30px 10px 10px; border-top: 1px solid #1e3a5f; margin-top: 30px; color: #64748b; font-size: 13px; }
 
@@ -139,7 +133,7 @@
 
   <div class="header">
     <h1>⚡ MCU TRACKER — MASTER BLUEPRINT</h1>
-    <p class="subtitle">Version 10.0 · Last Updated: Nov 2026 · PWA Live, Icons Installed & Fully Working</p>
+    <p class="subtitle">Version 11.0 · Last Updated: Nov 2026 · Secure Backend, PWA, Auth & Full Admin</p>
   </div>
 
   <div class="toc">
@@ -160,7 +154,7 @@
     <h2>1. 📌 Project Overview</h2>
     <div class="kv">
       <strong>Owner</strong><span>Shashwat Kumar (GitHub: shashwat0213)</span>
-      <strong>Live URL</strong><span><a href="https://shashwat0213.github.io/MARVEL-MCU-TRACKER/" target="_blank" class="live-link">https://shashwat0213.github.io/MARVEL-MCU-TRACKER/</a></span>
+      <strong>Live URL</strong><span><a href="https://shashwat0213.github.io/MARVEL-MCU-TRACKER/" target="_blank" style="color:#10b981;">https://shashwat0213.github.io/MARVEL-MCU-TRACKER/</a></span>
       <strong>Type</strong><span>Marvel Cinematic Universe Watch Tracker (PWA)</span>
       <strong>Tech Stack</strong><span>HTML5, CSS3, Vanilla JS (ES Modules), Firebase v10, Node.js (Render)</span>
       <strong>Hosting</strong><span>Frontend: GitHub Pages | Backend: Render</span>
@@ -173,9 +167,12 @@
 MARVEL-MCU-TRACKER/
 ├── index.html                  (Main UI + Professional Login)
 ├── manifest.json               (PWA Config)
-├── sw.js                       (Service Worker - Fast Cache)
+├── sw.js                       (Service Worker - Secure Cache)
 ├── mcu_tracker_icon_192x192.png (PWA Icon - Small)
 ├── mcu_tracker_icon_512x512.png (PWA Icon - Large)
+├── mcu_tracker_icon_192x192_maskable.png
+├── mcu_tracker_icon_512x512_maskable.png
+├── apple-touch-icon.png        (Apple icon)
 │
 ├── css/
 │   ├── style.css               (Base layout & components)
@@ -192,7 +189,7 @@ MARVEL-MCU-TRACKER/
 │
 └── backend/                    (Node.js Server on Render)
     ├── package.json
-    └── server.js               (Express - Hides TMDB API Key)</pre>
+    └── server.js               (Express - Secure API, Auth Check)</pre>
   </div>
 
   <div class="section" id="features">
@@ -202,17 +199,17 @@ MARVEL-MCU-TRACKER/
         <tr><th>Feature</th><th>Status</th><th>Details</th></tr>
       </thead>
       <tbody>
-        <tr><td>PWA Install (Home Screen)</td><td><span class="badge badge-ok">Live</span></td><td>Custom icons installed. App installs perfectly with custom Marvel logo.</td></tr>
-        <tr><td>Fast Loading Screen</td><td><span class="badge badge-ok">Done</span></td><td>CSS rings animation, 1.5 second duration.</td></tr>
-        <tr><td>Professional Sign In Page</td><td><span class="badge badge-ok">Done</span></td><td>Full screen page, Email, Google, Guest.</td></tr>
-        <tr><td>Logout Redirect</td><td><span class="badge badge-ok">Done</span></td><td>Logout dabate hi sign-in page wapas aa jata hai.</td></tr>
-        <tr><td>Responsive Glowing Header</td><td><span class="badge badge-ok">Done</span></td><td>Mobile pe fit hota hai, glowing effect ke saath.</td></tr>
+        <tr><td>PWA Install</td><td><span class="badge badge-ok">Live</span></td><td>Custom icons installed, installs perfectly.</td></tr>
+        <tr><td>Login Screen (Full Page)</td><td><span class="badge badge-ok">Done</span></td><td>Email, Google, Guest options.</td></tr>
+        <tr><td>Logout Redirect</td><td><span class="badge badge-ok">Done</span></td><td>Logout dabate hi wapas Sign In page.</td></tr>
+        <tr><td>Guest Mode</td><td><span class="badge badge-ok">Done</span></td><td>LocalStorage sync, custom guest name.</td></tr>
         <tr><td>7 Premium Themes</td><td><span class="badge badge-ok">Done</span></td><td>Stark, Asgard, Hulk, Wakanda, Sanctum, Doomsday, Spider-Verse.</td></tr>
-        <tr><td>Guest Mode</td><td><span class="badge badge-ok">Done</span></td><td>Local Storage sync, bina login.</td></tr>
-        <tr><td>Dropped Movies</td><td><span class="badge badge-ok">Done</span></td><td>Drop karne ka option + Filter.</td></tr>
-        <tr><td>Feedback System</td><td><span class="badge badge-ok">Done</span></td><td>Admin Panel + Email (Web3Forms key).</td></tr>
-        <tr><td>Secure API</td><td><span class="badge badge-ok">Done</span></td><td>TMDB key Render backend pe hidden.</td></tr>
-        <tr><td>Admin Panel</td><td><span class="badge badge-ok">Done</span></td><td>Movies, Timers, Users, Feedback.</td></tr>
+        <tr><td>Admin Panel</td><td><span class="badge badge-ok">Done</span></td><td>Movies, Timers, Users, Feedback, TMDB Auto-fill.</td></tr>
+        <tr><td>TMDB Search (Secure)</td><td><span class="badge badge-ok">Done</span></td><td>Sirf Admin hi search kar sakta hai (ID token verified).</td></tr>
+        <tr><td>Feedback System</td><td><span class="badge badge-ok">Done</span></td><td>Firebase + Email (Web3Forms key set hai).</td></tr>
+        <tr><td>Drop Movies</td><td><span class="badge badge-ok">Done</span></td><td>Drop karne ka option + Filter.</td></tr>
+        <tr><td>Service Worker (Fast Cache)</td><td><span class="badge badge-ok">Done</span></td><td>Network-first for own files, cache-first for 3rd party.</td></tr>
+        <tr><td>Doomsday Timer</td><td><span class="badge badge-ok">Done</span></td><td>Admin panel se custom timer bhi set ho sakta hai.</td></tr>
       </tbody>
     </table>
   </div>
@@ -222,8 +219,8 @@ MARVEL-MCU-TRACKER/
     <div class="kv">
       <strong>Render URL</strong><span>https://marvel-mcu-tracker.onrender.com</span>
       <strong>Env Variable</strong><span><code>TMDB_API_KEY</code> (Render Dashboard)</span>
-      <strong>Frontend Link</strong><span><code>js/admin.js</code> mein <code>RENDER_BACKEND_URL</code></span>
-      <strong>Web3Forms Key</strong><span><code>bc7dccc9-63ce-48a7-8eab-1d05811d824f</code> (index.html mein)</span>
+      <strong>Admin Verify</strong><span><code>Authorization: Bearer [Firebase ID Token]</code></span>
+      <strong>Web3Forms Key</strong><span><code>bc7dccc9-63ce-48a7-8eab-1d05811d824f</code></span>
     </div>
   </div>
 
@@ -234,17 +231,19 @@ MARVEL-MCU-TRACKER/
         <tr><th>Bug</th><th>Solution</th></tr>
       </thead>
       <tbody>
-        <tr><td>Theme layout break</td><td><code>themes.css</code> se layout properties hata di.</td></tr>
-        <tr><td>Light mode break</td><td><code>body.light-mode span</code> bug hata diya.</td></tr>
+        <tr><td>Theme layout break</td><td>Themes.css me sirf variables rakhe.</td></tr>
+        <tr><td>Light mode break</td><td>Light mode overrides clean kiye.</td></tr>
         <tr><td>Timer save/edit issue</td><td>Date format aur ID logic fix.</td></tr>
-        <tr><td>PWA Install not showing</td><td>Icons upload kiye, <code>manifest.json</code> fix kiya.</td></tr>
-        <tr><td>Explore Button not scrolling</td><td><code>scrollIntoView</code> add kiya.</td></tr>
+        <tr><td>PWA Install not showing</td><td>Icons upload kiye, manifest fix kiya.</td></tr>
+        <tr><td>Explore Button scroll</td><td><code>scrollIntoView</code> add kiya.</td></tr>
         <tr><td>Recommended Next stuck</td><td><code>tracker-updated</code> event fix.</td></tr>
-        <tr><td>Google Logo Blue Dot</td><td>SVG use kiya.</td></tr>
+        <tr><td>Google Logo Blue Dot</td><td>SVG Google logo use kiya.</td></tr>
         <tr><td>Website slow feel</td><td>Loading 1.5s kiya, background data loading fix.</td></tr>
         <tr><td>Header mobile pe toot raha tha</td><td><code>clamp()</code> aur responsive CSS.</td></tr>
         <tr><td>Login Page nahi aa raha tha</td><td><code>hasVisited</code> logic aur full-screen overlay fix.</td></tr>
         <tr><td>Logout pe page reload nahi hota tha</td><td><code>user-logged-out</code> event se login screen trigger kiya.</td></tr>
+        <tr><td>Admin without token</td><td>Backend me ID token verify kiya (sirf admin).</td></tr>
+        <tr><td>Service Worker CORS</td><td>NETWORK_ONLY_HOSTS me Firebase aur Render add kiye.</td></tr>
       </tbody>
     </table>
   </div>
@@ -253,7 +252,7 @@ MARVEL-MCU-TRACKER/
     <h2>6. ⚠️ Pending Issues (Agar Koi Hai)</h2>
     <div class="alert alert-info">
       <h4>1. Render Cold Start</h4>
-      <p>Render free tier 15 min inactivity ke baad sleep hota hai. <b>UptimeRobot</b> se ping karwa ke jagaya ja sakta hai (Optional).</p>
+      <p>Render free tier 15 min inactivity ke baad sleep hota hai. UptimeRobot se ping karwa ke jagaya ja sakta hai (Optional).</p>
     </div>
     <div class="alert alert-info">
       <h4>2. Custom Domain (Optional)</h4>
@@ -340,7 +339,7 @@ if (!hasVisited) {
   <div class="divider"></div>
 
   <div class="footer">
-    <p><strong>MCU Tracker Master Blueprint v10.0</strong></p>
+    <p><strong>MCU Tracker Master Blueprint v11.0</strong></p>
     <p>Isko naye AI ko dikhao, sab samajh jayega.</p>
     <p style="margin-top:10px;color:#22d3ee;">⚡ Powered by Shashwat</p>
   </div>
